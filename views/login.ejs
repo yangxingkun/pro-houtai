@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>IN ADMIN PANEL | Collect from INDEZINER</title>
+<link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+<script type="text/javascript" src="/javascripts/jquery.min.js"></script>
+<script type="text/javascript" src="/javascripts/ddaccordion.js"></script>
+
+
+<script type="text/javascript" src="/javascripts/jconfirmaction.jquery.js"></script>
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$('.ask').jConfirmAction();
+	});
+	
+</script>
+
+<script language="javascript" type="text/javascript" src="/javascripts/niceforms.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="/stylesheets/niceforms-default.css" />
+
+</head>
+<body>
+<div id="main_container">
+
+	<div class="header_login">
+    <div class="logo"><a href="#">登录</a></div>
+    
+    </div>
+
+     
+         <div class="login_form">
+         
+         <h3>管理面板登录</h3>
+         
+         <a href="#" class="forgot_pass">忘记密码</a> 
+         
+         <form action="" method="post" class="niceform">
+         
+                <fieldset>
+                    <dl>
+                        <dt><label for="email">用户名:</label></dt>
+                        <dd><input type="text" name="" id="username" size="54" /></dd>
+                    </dl>
+                    <dl>
+                        <dt><label for="password">密码:</label></dt>
+                        <dd><input type="password" name="" id="password" size="54" /></dd>
+                    </dl>
+                    
+                    <dl>
+                        <dt><label></label></dt>
+                        <dd>
+                    <input type="checkbox" name="interests[]" id="" value="" /><label class="check_label">记住账号</label>
+                        </dd>
+                    </dl>
+                    
+                     <dl class="submit">
+                    <input type="button" id="login" value="登录" />
+                     </dl>
+                    
+                </fieldset>
+                
+         </form>
+         </div>  
+          
+	
+    
+   
+
+</div>		
+</body>
+<script type="text/javascript">
+$(function(){
+		
+
+	$('#login').click(function(){
+		$.ajax( {
+					type:'post',
+					url:'/users/login',
+					data:{username:$('#username').val(),password:$('#password').val()},
+					success:function(data){
+						console.log(data)
+						if(data==1){
+							alert('登录成功,成功跳转首页');
+							location.href='/'
+						}else{
+							alert('用户名密码不正确，请重新登录');
+							location.href='/login'
+						}
+					}
+				})
+			})
+		})
+</script>
+</html>
